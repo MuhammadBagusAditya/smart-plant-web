@@ -1,4 +1,4 @@
-import * as mqtt from 'mqtt';
+import mqtt from 'mqtt';
 
 export const mqttClient = mqtt.connect('wss://vd1add42.ala.asia-southeast1.emqxsl.com:8084/mqtt', {
 	username: 'bagusteam',
