@@ -11,8 +11,15 @@
 		range = [0, 100],
 		unit = 'score'
 	} = $props();
-	let percentage = $derived((value / maxValue) * 75);
+
+	let validValue = $derived.by(() => {
+		if (value > maxValue) return maxValue;
+		else if (value < minValue) return minValue;
+		return value;
+	});
+
 	let isGood = $derived(value > range[0] && value < range[1]);
+	let percentage = $derived((validValue / maxValue) * 100);
 </script>
 
 <div
@@ -25,7 +32,7 @@
 		</div>
 
 		<span class={twMerge('text-2xl', isGood ? 'text-emerald-600' : 'text-red-600')}>
-			{value + unit}
+			{validValue + unit}
 		</span>
 	</div>
 
@@ -47,7 +54,7 @@
 					'flex flex-col justify-center overflow-hidden whitespace-nowrap rounded-full  text-center text-xs text-white transition duration-500',
 					isGood ? 'bg-emerald-600 dark:bg-emerald-500' : 'bg-red-600 dark:bg-red-500'
 				)}
-				style:width={(value / maxValue) * 100 + '%'}
+				style:width={percentage + '%'}
 			></div>
 		</div>
 		<!-- End Progress -->
