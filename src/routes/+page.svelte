@@ -21,7 +21,7 @@
 
 <Navbar />
 
-<main class="flex flex-col items-center justify-center gap-4">
+<main class="flex flex-col items-center justify-center gap-4 pb-8">
 	<StatusCard
 		title="Kelembaban Tanah"
 		value={statuses.soilMoisture}
