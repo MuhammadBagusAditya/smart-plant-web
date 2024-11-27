@@ -45,16 +45,16 @@
 		value={statuses.temperature}
 		icon="bi:thermometer-half"
 		maxValue={100}
-		unit="&deg;C"
+		unit="&deg;c"
 		range={[18, 40]}
 	/>
 
 	<StatusCard
-		title=""
+		title="Tingkat Cahaya"
 		value={statuses.light}
 		icon="bi:sun"
 		maxValue={4000}
-		unit="Lx"
+		unit="lx"
 		range={[1000, 3000]}
 	/>
 </main>
