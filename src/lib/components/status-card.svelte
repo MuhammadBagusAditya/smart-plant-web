@@ -9,13 +9,23 @@
 		maxValue = 100,
 		value = 50,
 		range = [0, 100],
-		unit = 'score'
+		unit = 'score',
+		formatter = (_value) => {
+			return _value;
+		},
+		withUnit = true
 	} = $props();
 
 	let validValue = $derived.by(() => {
 		if (value > maxValue) return maxValue;
 		else if (value < minValue) return minValue;
 		return value;
+	});
+
+	let formattedValue = $derived.by(() => {
+		let _value = validValue;
+
+		return formatter(_value);
 	});
 
 	let isGood = $derived(value > range[0] && value < range[1]);
@@ -32,7 +42,7 @@
 		</div>
 
 		<span class={twMerge('text-2xl', isGood ? 'text-emerald-600' : 'text-red-600')}>
-			{validValue + unit}
+			{formattedValue + (withUnit ? unit : '')}
 		</span>
 	</div>
 

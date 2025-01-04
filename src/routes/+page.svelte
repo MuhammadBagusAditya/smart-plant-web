@@ -14,7 +14,7 @@
 		let topics = topic.split('/');
 		console.log(topic + ' ' + message);
 		if (topics[0] === 'status') {
-			statuses[topics[1]] = Number.parseInt(message);
+			statuses[topics[1]] = Number.parseFloat(message).toFixed(2);
 		}
 	});
 </script>
@@ -50,11 +50,15 @@
 	/>
 
 	<StatusCard
-		title="Tingkat Cahaya"
+		title="Kondisi Cahaya"
 		value={statuses.light}
 		icon="bi:sun"
-		maxValue={4000}
-		unit="lx"
-		range={[1000, 3000]}
+		maxValue={100}
+		unit="%"
+		range={[40, 100]}
+		formatter={(_value) => {
+			return _value > 40 ? 'Terang' : 'Gelap';
+		}}
+		withUnit={false}
 	/>
 </main>
